@@ -31,11 +31,11 @@ public class InitManager {
      * @see TestPropManager#getProperty(String)
      * @see ru.appline.core.utils.PropConst
      */
-    public static void initFramework(String url) {
+    public static void initFramework() {
         driverManager.getDriver().manage().window().maximize();
         driverManager.getDriver().manage().timeouts().implicitlyWait(Integer.parseInt(props.getProperty(IMPLICITLY_WAIT)), TimeUnit.SECONDS);
         driverManager.getDriver().manage().timeouts().pageLoadTimeout(Integer.parseInt(props.getProperty(PAGE_LOAD_TIMEOUT)), TimeUnit.SECONDS);
-        driverManager.getDriver().get(url);
+        driverManager.getDriver().get(props.getProperty(BASE_URL));
     }
 
     /**

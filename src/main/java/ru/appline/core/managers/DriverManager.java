@@ -102,7 +102,6 @@ public class DriverManager {
         initDriverAnyOsFamily(PATH_GECKO_DRIVER_WINDOWS, PATH_CHROME_DRIVER_WINDOWS);
     }
 
-
     /**
      * Метод инициализирующий веб драйвер под ОС семейства Mac
      */
@@ -138,6 +137,4 @@ public class DriverManager {
                 Assertions.fail("Типа браузера '" + props.getProperty(TYPE_BROWSER) + "' не существует во фреймворке");
         }
     }
-
-
 }
