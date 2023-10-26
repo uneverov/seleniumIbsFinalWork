@@ -1,9 +1,7 @@
 package ru.appline.core.managers;
 
-import ru.appline.core.pages.AuthPage;
-import ru.appline.core.pages.BusinessTripPage;
-import ru.appline.core.pages.CreateBusinessTripPage;
-import ru.appline.core.pages.HomePage;
+import ru.appline.core.pages.CategoryPage;
+import ru.appline.core.pages.StartPage;
 
 /**
  * @author Neverov Evgeny
@@ -17,32 +15,14 @@ public class PageManager {
     private static PageManager pageManager;
 
     /**
-     * Cтраница авторизации
-     */
-    private AuthPage authPage;
-
-    /**
      * Стартовая страница
      */
-    private HomePage homePage;
+    private StartPage startPage;
 
     /**
-     * Страница командировки
+     * Страница категорий товаров
      */
-    private BusinessTripPage businessTripPage;
-
-    /**
-     * Страница создания командировки
-     */
-    private CreateBusinessTripPage createBusinessTripPage;
-
-    /**
-     * Конструктор специально был объявлен как private (singleton паттерн)
-     *
-     * @see PageManager#getPageManager()
-     */
-    private PageManager() {
-    }
+    private CategoryPage categoryPage;
 
     /**
      * Ленивая инициализация PageManager
@@ -57,50 +37,29 @@ public class PageManager {
     }
 
     /**
-     * Ленивая инициализация {@link AuthPage}
+     * Ленивая инициализация {@link StartPage}
      *
      * @return AuthPage
      */
-    public AuthPage getAuthPage() {
-        if (authPage == null) {
-            authPage = new AuthPage();
+    public StartPage getStartPage() {
+        if (startPage == null) {
+            startPage = new StartPage();
         }
-        return authPage;
+        return startPage;
     }
 
     /**
-     * Ленивая инициализация {@link HomePage}
+     * Ленивая инициализация {@link CategoryPage}
      *
-     * @return HomePage
+     * @return AuthPage
      */
-    public HomePage getHomePage() {
-        if (homePage == null) {
-            homePage = new HomePage();
+    public CategoryPage getCategoryPage() {
+        if (categoryPage == null) {
+            categoryPage = new CategoryPage();
         }
-        return homePage;
+        return categoryPage;
     }
 
-    /**
-     * Ленивая инициализация {@link BusinessTripPage}
-     *
-     * @return BusinessTripPage
-     */
-    public BusinessTripPage getBusinessTripPage() {
-        if (businessTripPage == null) {
-            businessTripPage = new BusinessTripPage();
-        }
-        return businessTripPage;
-    }
 
-    /**
-     * Ленивая инициализация {@link BusinessTripPage}
-     *
-     * @return BusinessTripPage
-     */
-    public CreateBusinessTripPage getCreateBusinessTripPage() {
-        if (createBusinessTripPage == null) {
-            createBusinessTripPage = new CreateBusinessTripPage();
-        }
-        return createBusinessTripPage;
-    }
+
 }

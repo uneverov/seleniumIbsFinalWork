@@ -50,7 +50,6 @@ public class TestPropManager {
         return INSTANCE;
     }
 
-
     /**
      * Метод подгружает содержимого файла application.properties в переменную {@link #properties}
      * Либо из файла переданного пользователем через настройку -DpropFile={nameFile}
@@ -84,20 +83,6 @@ public class TestPropManager {
                     }
                 }));
     }
-
-
-    /**
-     * Метод возвращает либо значение записанное в ключе в переменной {@link #properties},
-     * либо defaultValue при отсутствие ключа в переменной {@link #properties}
-     *
-     * @param key          - ключ, значения которого хотите получить
-     * @param defaultValue - значение по умолчанию которое хотите получить если отсутствует ключ в {@link #properties}
-     * @return String - возвращает системное св-во либо переданное default значение
-     */
-    public String getProperty(String key, String defaultValue) {
-        return properties.getProperty(key, defaultValue);
-    }
-
 
     /**
      * Метод возвращает значения записанное в ключе в переменной {@link #properties}, если нет переменной вернет null

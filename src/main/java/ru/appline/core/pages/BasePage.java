@@ -11,12 +11,22 @@ import ru.appline.core.managers.TestPropManager;
 
 import java.time.Duration;
 
+import static ru.appline.core.utils.PropConst.IMPLICITLY_WAIT;
+import static ru.appline.core.utils.PropConst.PAGE_LOAD_TIMEOUT;
+
 
 /**
  * @author Neverov Evgeny
  * Базовый класс всех страничек
  */
 public class BasePage {
+
+    /**
+     * Менеджер properties
+     *
+     * @see TestPropManager#getTestPropManager()
+     */
+    private static final TestPropManager props = TestPropManager.getTestPropManager();
 
     /**
      * Менеджер WebDriver
@@ -47,15 +57,7 @@ public class BasePage {
      * @see WebDriverWait
      */
     protected WebDriverWait wait = new WebDriverWait(driverManager.getDriver(),
-            Duration.ofMillis(20), Duration.ofMillis(2000));
-
-    /**
-     * Менеджер properties
-     *
-     * @see TestPropManager#getTestPropManager()
-     */
-    private final TestPropManager props = TestPropManager.getTestPropManager();
-
+            Duration.ofMillis(Integer.parseInt(props.getProperty(IMPLICITLY_WAIT))), Duration.ofMillis(Integer.parseInt(props.getProperty(PAGE_LOAD_TIMEOUT))));
 
     /**
      * Конструктор позволяющий инициализировать все странички и их элементы помеченные аннотацией {@link FindBy}
@@ -92,28 +94,4 @@ public class BasePage {
     protected WebElement waitUtilElementToBeClickable(WebElement element) {
         return wait.until(ExpectedConditions.elementToBeClickable(element));
     }
-
-    /**
-     * Явное ожидание того что элемент станет видемым
-     *
-     * @param element - веб элемент который мы ожидаем что будет  виден на странице
-     */
-    protected WebElement waitUtilElementToBeVisible(WebElement element) {
-        return wait.until(ExpectedConditions.visibilityOf(element));
-    }
-
-    /**
-     * Общий метод по заполнения полей ввода
-     *
-     * @param field - веб-элемент поле ввода
-     * @param value - значение вводимое в поле
-     */
-    protected void fillInputField(WebElement field, String value) {
-        scrollToElementJs(field);
-        field.clear();
-        waitUtilElementToBeClickable(field).click();
-        field.sendKeys(value);
-    }
-
-
 }
